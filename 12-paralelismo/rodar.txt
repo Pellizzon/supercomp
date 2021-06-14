@@ -1,0 +1,5 @@
+g++ -O3 exemplo1.cpp -o exemplo1 -fopenmp && OMP_NUM_THREADS=2 ./exemplo1
+g++ -O3 exemplo2.cpp -o exemplo2 -fopenmp && OMP_NUM_THREADS=2 ./exemplo2
+g++ -O3 exemplo3.cpp -o exemplo3 -fopenmp && OMP_NUM_THREADS=2 ./exemplo3
+g++ -O3 exercicio1_sequencial.cpp -o exercicio1_sequencial -fopenmp && time OMP_NUM_THREADS=2 ./exercicio1_sequencial
+g++ -O3 exercicio1_paralelo.cpp -o exercicio1_paralelo -fopenmp && time OMP_NUM_THREADS=2 ./exercicio1_paralelo
