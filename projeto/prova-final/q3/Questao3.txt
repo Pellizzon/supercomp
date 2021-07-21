@@ -1,0 +1,93 @@
+Rodando as entradas:
+
+p = 0.25
+
+    in14:
+                            tempo      MMS
+    heuristico:             0,012s    135579
+    Novo heuristico CPU:    0,671s    139677
+    Novo heuristico GPU:    1,246s    139641
+
+    in15:
+                            tempo    MMS
+    heuristico:             0,003s    238622
+    Novo heuristico CPU:    1,852s    242846
+    Novo heuristico GPU:    1,228s    242863
+
+    in16:
+                            tempo      MMS
+    heuristico:             0,009s    219739
+    Novo heuristico CPU:    3,218s    223584
+    Novo heuristico GPU:    2,127s    223461
+
+    in17:
+                            tempo      MMS
+    heuristico:             0,002s    198713
+    Novo heuristico CPU:    4,132s    202371
+    Novo heuristico GPU:    3,238s    202304
+
+p = 0.5
+
+    in14:
+                            tempo      MMS
+    heuristico:             0,012s    135579
+    Novo heuristico CPU:    0,878s    140160
+    Novo heuristico GPU:    0,702s    140161
+
+    in15:
+                            tempo    MMS
+    heuristico:             0,003s    238622
+    Novo heuristico CPU:    2,326s    243229
+    Novo heuristico GPU:    1,207s    243212
+
+    in16:
+                            tempo      MMS
+    heuristico:             0,009s    219739
+    Novo heuristico CPU:    5,432s    224421
+    Novo heuristico GPU:    2,493s    224434
+
+    in17:
+                            tempo      MMS
+    heuristico:             0,002s    198713
+    Novo heuristico CPU:    5,858s    203429
+    Novo heuristico GPU:    3,988s    203431
+
+p = 0.75
+
+    in14:
+                            tempo      MMS
+    heuristico:             0,012s    135579
+    Novo heuristico CPU:    0,850s    140230
+    Novo heuristico GPU:    0,637s    140230
+
+    in15:
+                            tempo    MMS
+    heuristico:             0,003s    238622
+    Novo heuristico CPU:    2,366s    243273
+    Novo heuristico GPU:    1,316s    243271
+
+    in16:
+                            tempo      MMS
+    heuristico:             0,009s    219739
+    Novo heuristico CPU:    4,489s    224496
+    Novo heuristico GPU:    2,907s    224498
+
+    in17:
+                            tempo      MMS
+    heuristico:             0,002s    198713
+    Novo heuristico CPU:    6,670s    203563
+    Novo heuristico GPU:    4,772s    203562
+
+
+Para todas as probabilidades p, essa nova implementação de heurística se mostra superior quanto ao MMS. 
+No entanto, começamos a ter perda de desempenho, principalmente quando aumentamos a probabilidade p.
+
+Isso ocorre, porque o processo deve ser repetido ITER vezes. Quando maior p, mais nos aproximamos da "busca local",
+no entanto sem a troca de itens, apenas alocando um objeto para a pessoa de menor valor. 
+Assim, estamos chutando valores a fim de tentar encontrar uma distribuição
+gerada aleatoriamente que se equipare a global.
+
+Como podem ser observados nos dados coletados acima, essa nova implementação, mesmo utilizando paralelismo
+não é melhor, em relação a tempo de exucução, que a heurística original. A implementação em GPU é até superior
+em relação a esse quesito se comparada com a CPU. Já considerando o MMS, essa nova implementação é melhor e portanto
+mais justa em todos os cenários testados.

@@ -1,0 +1,25 @@
+O código não é paralelizável dada a implementação atual, pois foi feito utilizando 
+push_back e erase. Como esses métodos modificam o vetor, isso causará erros 
+no programa.
+
+Portanto, para tornar esse código paralellizável e fazê-lo de maneira correta e 
+ganhando desempenho (sem a necessidade de uma área crítica), esse for:
+
+`for (int i = 6; i < serie.size(); i++)` 
+
+poderia ser paralelizado com um parallel for. Acc poderia ser preenchido
+inicialmente com o próprio push_back. Essa parte não seria paralelizada.
+
+Ou melhor ainda, remover a existência desse vetor acc.
+
+Em seguida o for paralelo deveria utilizar os índices para fazer as movimentações
+e alocações adequadas desse problema, para finalmente poder calcular a média móvel. 
+O novo cálculo da média móvel deveria ser algo parecido com isso (dentro do for paralelo):
+
+para todo j < 7, repita:
+    media[i] = serie[índice adequado] / 7
+
+O índice adequado equivale a i + j - 6, quando i equivale a 6 (ou seja estamos no 7° dia),
+devemos acessar os primeiros valores da serie (portanto j deverá ser uma sequência 0, 1, 2, ..., 7).
+
+Assim, as threads irão calcular a média e alocar esse valor no vetor de media em sua posição.
